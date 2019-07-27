@@ -9,7 +9,7 @@ function paint(ctx) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = '#0fff';
-    ctx.fillRect(x, y, 10, 10);
+    ctx.fillRect(x, y, 20, 10);
 }
 
 function init() {
@@ -20,7 +20,10 @@ function init() {
 }
 
 function act() {
-    x += 2;
+    x += 2; //movement
+    if (x > canvas.width) { //when you pass the screen to return(x=width)
+        x= 0;
+    }
 }
 
 function run() {
