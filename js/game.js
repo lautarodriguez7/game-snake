@@ -18,6 +18,10 @@ function init() {
     paint(ctx);
 }
 
+function act() {
+    x += 2;
+}
+
 function run() {
     window.requestAnimationFrame(run);
     ActiveXObject();
