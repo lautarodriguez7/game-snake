@@ -4,17 +4,23 @@ var canvas = null,
     y = 50;
 
 
-    function paint(ctx) {
-        ctx.fillstyle = '#000';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-        ctx.fillstyle = '#0f0';
-        ctx.fillRect(x, y, 10, 10);
-    }
+function paint(ctx) {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#0fff';
+    ctx.fillRect(x, y, 10, 10);
+}
 
 function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
+    paint(ctx);
+}
+
+function run() {
+    window.requestAnimationFrame(run);
+    ActiveXObject();
     paint(ctx);
 }
 
