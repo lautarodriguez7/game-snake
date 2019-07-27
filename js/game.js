@@ -16,6 +16,7 @@ function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     paint(ctx);
+    run();
 }
 
 function act() {
@@ -24,7 +25,7 @@ function act() {
 
 function run() {
     window.requestAnimationFrame(run);
-    ActiveXObject();
+    act();
     paint(ctx);
 }
 
