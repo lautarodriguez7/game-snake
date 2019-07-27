@@ -1,7 +1,8 @@
 var canvas = null,
     ctx = null,
     x = 50,
-    y = 50;
+    y = 50,
+    lastPress = null;
 
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
