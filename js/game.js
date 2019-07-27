@@ -3,7 +3,14 @@ var canvas = null,
     x = 50,
     y = 50;
 
-
+window.requestAnimationFrame = (function () {
+    return window.requestAnimationFrame ||
+        window.mozRequestAnimationFrame ||  //For some older browsers that do not support requestAnimationFrame
+        window.webkitRequestAnimationFrame ||
+        function (callback) {
+            window.setTimeout(callback, 17);
+        };
+    }());
 function paint(ctx) {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -12,12 +19,6 @@ function paint(ctx) {
     ctx.fillRect(x, y, 20, 10);
 }
 
-function init() {
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    paint(ctx);
-    run();
-}
 
 function act() {
     x += 2; //movement
@@ -30,6 +31,13 @@ function run() {
     window.requestAnimationFrame(run);
     act();
     paint(ctx);
+}
+
+function init() {
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+
+    run();
 }
 
 window.addEventListener('load', init, false);
