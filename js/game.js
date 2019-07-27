@@ -3,7 +3,10 @@ var canvas = null,
 
 function paint(ctx) {
     ctx.fillstyle = '#0f0';
-    ctx.fillRect(50, 50, 100, 60);
+    ctx.fillRect(50, 50, 180, 50);
+    ctx.strokeStyle = "#FF0000";
+    ctx.strokeRect(25, 10, 250, 125);
+
 }
 
 function init() {
