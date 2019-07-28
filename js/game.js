@@ -43,5 +43,5 @@ function init() {
 
 window.addEventListener('load', init, false);
 document.addEventListener('keydown', function(evt) {
-    lastPress = evt.which;
+    lastPress = evt.which; // Through this method, we can make decisions in the game knowing the last key pressed.
 }, false);
