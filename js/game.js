@@ -42,3 +42,6 @@ function init() {
 }
 
 window.addEventListener('load', init, false);
+document.addEventListener('keydown', function(evt) {
+    lastPress = evt.which;
+}, false);
