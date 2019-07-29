@@ -8,6 +8,7 @@ var KEY_LEFT = 37, //movement on the keyboard
     KEY_UP = 38,
     KEY_RIGHT = 39,
     KEY_DOWN = 40;
+    KEY_ENTER = 13;
 
 var dir = 0; 
 
@@ -59,6 +60,19 @@ function act() {
     }
     if (dir == 3) {
         x += 10;
+    }
+    //Out Screen
+    if (x > canvas.width) {
+        x = 0;
+    }
+    if (y > canvas.height) {
+        y = 0;
+    }
+    if (x < 0) {
+        x = canvas.width;
+    }
+    if (y < 0) {
+        y = canvas.height;
     }
 }
 
