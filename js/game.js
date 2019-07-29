@@ -93,7 +93,7 @@ function paint(ctx) {
    }
 
    // Draw walls
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = '#fff';
     for (i = 0, l = wall.length; i < l; i += 1) {
         wall[i].fill(ctx);
     }  
