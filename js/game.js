@@ -3,10 +3,14 @@ var canvas = null,
     x = 50,
     y = 50,
     lastPress = null;
-var KEY_LEFT = 37,
+
+var KEY_LEFT = 37, //movement on the keyboard
     KEY_UP = 38,
     KEY_RIGHT = 39,
     KEY_DOWN = 40;
+
+var dir = 0; 
+
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||  //For some older browsers that do not support requestAnimationFrame
@@ -33,9 +37,8 @@ function act() {
 }
 
 function run() {
-    window.requestAnimationFrame(run);
+    setTimeout(run, 50);
     act();
-    paint(ctx);
 }
 
 function init() {
@@ -43,6 +46,11 @@ function init() {
     ctx = canvas.getContext('2d');
 
     run();
+}
+
+function repaint() {
+    window.requestAnimationFrame(repaint);
+    paint(ctx);
 }
 
 window.addEventListener('load', init, false);
