@@ -103,7 +103,7 @@ function paint(ctx) {
     food.fill(ctx);
 
     // Debug last key pressed
-    ctx.fillStyle = '#fff'
+    ctx.fillStyle = '#f0ff'
     ctx.fillText('Last Press: ' + lastPress, 0, 20);
 
     //Draw score
@@ -187,7 +187,8 @@ function act() {
     }
 
     // Food instersects
-    if (body.intersects(food)) {
+    if (body[0].intersects(food)) {
+        body.push(new Rectangle(food.x, food.y, 10, 10));
         score += 1;
         food.x = random(canvas.width / 10 - 1) * 10;
         food.y = random(canvas.height / 10 -1) * 10;
