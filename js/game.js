@@ -34,6 +34,32 @@ function act() {
     if (x > canvas.width) { //when you pass the screen to return(x=width)
         x= 0;
     }
+    // Change the direction
+    if (lastPress == KEY_UP) {
+        dir = 0;
+    }
+    if (lastPress == KEY_RIGHT) {
+        dir = 1;
+    }
+    if (lastPress == KEY_DOWN) {
+        dir = 2;
+    }
+    if (lastPress == KEY_LEFT) {
+        dir = 3;
+    }
+    // Move rect
+    if (dir == 0) {
+        y -= 10;
+    }
+    if (dir == 1) {
+        x -= 10;
+    }
+    if (dir == 2) {
+        y += 10;
+    }
+    if (dir == 3) {
+        x += 10;
+    }
 }
 
 function run() {
