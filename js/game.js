@@ -3,7 +3,10 @@ var canvas = null,
     x = 50,
     y = 50,
     lastPress = null;
-
+var KEY_LEFT = 37,
+    KEY_UP = 38,
+    KEY_RIGHT = 39,
+    KEY_DOWN = 40;
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||  //For some older browsers that do not support requestAnimationFrame
@@ -18,6 +21,7 @@ function paint(ctx) {
 
     ctx.fillStyle = '#0fff';
     ctx.fillRect(x, y, 20, 10);
+    ctx.fillText('Last Press: ' + lastPress, 0, 20);
 }
 
 
