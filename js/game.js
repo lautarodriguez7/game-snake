@@ -5,7 +5,9 @@ var canvas = null,
     lastPress = null,
     food = null,
     score = 0,
-    pause = true;
+    pause = true,
+    wall = new array(),
+    gameover = true;
     
 //movement on the keyboard
 var KEY_LEFT = 37,
@@ -13,8 +15,6 @@ var KEY_LEFT = 37,
     KEY_RIGHT = 39,
     KEY_DOWN = 40;
     KEY_ENTER = 13;
-
-var wall = new array();
 
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
@@ -58,6 +58,16 @@ function random(max) {
     return Math.floor(Math.random() * max);
     }
 
+function reset() {
+    score = 0;
+    dir = 1;
+    player.x = 40;
+    player.y = 40;
+    food.x = random(canvas.width / 10 - 1) * 10;
+    food.y = random(canvas.height / 10 - 1) * 10
+    gameover = false;
+}
+
 function paint(ctx) {
     //clean canvas
     ctx.fillStyle = '#000';
@@ -77,6 +87,12 @@ function paint(ctx) {
 
     //Draw score
     ctx.fillText('Score: ' + score, 0, 10);
+
+    //draw walls
+    ctx.fillStyle = '#999';
+    for (i = 0; wall.length; i < l; i += 1) {
+        wall[i].fill(ctx);
+    }
 
     //Draw pause
     if (pause) {
@@ -116,7 +132,11 @@ function act() {
         if (dir == 3) {
             player.x += 10;
         }
-
+        
+        //Game Over reset
+        if (gameover) {
+            reset()
+        }
       // Out Screen
         if (player.x > canvas.width) {
         player.x = 0;
