@@ -15,6 +15,7 @@ var KEY_LEFT = 37,
     KEY_ENTER = 13;
 
 var wall = new array();
+
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||  //For some older browsers that do not support requestAnimationFrame
@@ -159,6 +160,12 @@ function init() {
     // Create player and food
     player = new Rectangle(40, 40, 10, 10);
     food = new Rectangle(80, 80, 10, 10);
+    
+    // Create walls
+    wall.push(new Rectangle(100, 50, 10, 10));
+    wall.push(new Rectangle(100, 100, 10, 10));
+    wall.push(new Rectangle(200, 50, 10, 10));
+    wall.push(new Rectangle(200, 100, 10, 10));
 
     //Start game
     run();
