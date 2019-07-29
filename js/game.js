@@ -13,6 +13,8 @@ var KEY_ENTER = 13,
     dir = 0,
     score = 0,
     wall = new Array(),
+    //player = null,
+    body = new Array(),
     player = null,
     food = null;
 
