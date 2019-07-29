@@ -14,6 +14,7 @@ var KEY_LEFT = 37,
     KEY_DOWN = 40;
     KEY_ENTER = 13;
 
+var wall = new array();
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
         window.mozRequestAnimationFrame ||  //For some older browsers that do not support requestAnimationFrame
