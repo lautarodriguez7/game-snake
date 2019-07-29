@@ -1,20 +1,20 @@
-var canvas = null,
-    ctx = null,
-    player = null,
-    dir = 0,
-    lastPress = null,
-    food = null,
-    score = 0,
-    pause = true,
-    wall = new array(),
-    gameover = true;
-    
-//movement on the keyboard
-var KEY_LEFT = 37,
+//movements the keyboard
+var KEY_ENTER = 13,
+    KEY_LEFT = 37,
     KEY_UP = 38,
     KEY_RIGHT = 39,
-    KEY_DOWN = 40;
-    KEY_ENTER = 13;
+    KEY_DOWN = 40,
+
+    canvas = null,
+    ctx = null,
+    lastPress = null,
+    pause = true,
+    gameover = true,
+    dir = 0,
+    score = 0,
+    wall = new Array(),
+    player = null,
+    food = null;
 
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
@@ -45,6 +45,7 @@ function Rectangle(x, y, width, height) {
             this.y + this.height > rect.y);
         }
     };
+
     this.fill = function (ctx) {
         if (ctx == null) {
             window.console.warn('Missing parameters on function fill');
@@ -69,6 +70,9 @@ function reset() {
 }
 
 function paint(ctx) {
+    var i = 0 ,
+        l = 0;
+
     //clean canvas
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -77,6 +81,12 @@ function paint(ctx) {
    ctx.fillStyle = '#0f0';
    player.fill(ctx);
 
+   // Draw walls
+    ctx.fillStyle = '#999';
+    for (i = 0, l = wall.length; i < l; i += 1) {
+        wall[i].fill(ctx);
+    }  
+    
     //draw food
     ctx.fillStyle = '#f00';
     food.fill(ctx);
@@ -88,83 +98,97 @@ function paint(ctx) {
     //Draw score
     ctx.fillText('Score: ' + score, 0, 10);
 
-    //draw walls
-    ctx.fillStyle = '#999';
-    for (i = 0; wall.length; i < l; i += 1) {
-        wall[i].fill(ctx);
-    }
-
-    //Draw pause
+    // Draw pause
     if (pause) {
         ctx.textAlign = 'center';
+        if (gameover) {
+        ctx.fillText('GAME OVER', 150, 75);
+        } else {
         ctx.fillText('PAUSE', 150, 75);
+        }
         ctx.textAlign = 'left';
-    }  
+    }
 }
 
 
 function act() {
+    var i,
+        l;
     if (!pause) { 
+    //Game Over reset
+    if (gameover) {
+        reset()
+    }
     // Change the direction
-        if (lastPress == KEY_UP) {
-            dir = 0;
-        }
-        if (lastPress == KEY_LEFT) {
-            dir = 1;
-        }
-        if (lastPress == KEY_DOWN) {
-            dir = 2;
-        }
-        if (lastPress == KEY_RIGHT) {
-            dir = 3;
-        }
-
-        // Move rect
-        if (dir == 0) {
-            player.y -= 10;
-        }
-        if (dir == 1) {
-            player.x -= 10;
-        }
-        if (dir == 2) {
-            player.y += 10;
-        }
-        if (dir == 3) {
-            player.x += 10;
-        }
-        
-        //Game Over reset
-        if (gameover) {
-            reset()
-        }
-      // Out Screen
-        if (player.x > canvas.width) {
-        player.x = 0;
-        }
-        if (player.y > canvas.height) {
-        player.y = 0;
-        }
-        if (player.x < 0) {
-        player.x = canvas.width;
-        }
-        if (player.y < 0) {
-        player.y = canvas.height;
-        }
-         // Food instersects
-        if (player.intersects(food)) {
-            score += 1;
+    if (lastPress == KEY_UP) {
+        dir = 0;
+    }
+    if (lastPress == KEY_LEFT) {
+        dir = 1;
+    }
+    if (lastPress == KEY_DOWN) {
+        dir = 2;
+    }
+    if (lastPress == KEY_RIGHT) {
+        dir = 3;
+    }
+    // Move rect
+    if (dir == 0) {
+        player.y -= 10;
+    }
+    if (dir == 1) {
+        player.x -= 10;
+    }
+    if (dir == 2) {
+        player.y += 10;
+    }
+    if (dir == 3) {
+        player.x += 10;
+    }
+    
+    
+  // Out Screen
+    if (player.x > canvas.width) {
+    player.x = 0;
+    }
+    if (player.y > canvas.height) {
+    player.y = 0;
+    }
+    if (player.x < 0) {
+    player.x = canvas.width;
+    }
+    if (player.y < 0) {
+    player.y = canvas.height;
+    }
+    // Food instersects
+    if (player.intersects(food)) {
+        score += 1;
+        food.x = random(canvas.width / 10 - 1) * 10;
+        food.y = random(canvas.height / 10 -1) * 10;
+    }
+    // Wall Intersects
+    for (i = 0, l = wall.length; i < l; i += 1) {
+        if (food.intersects(wall[i])) {
             food.x = random(canvas.width / 10 - 1) * 10;
-            food.y = random(canvas.height / 10 -1) * 10;
+            food.y = random(canvas.height / 10 - 1) * 10;
+        }
+        if (player.intersects(wall[i])) {
+            gameover = true;
+            pause = true;
         }
     }
-
-   
+}
 
     //Pause/Unpause
     if (lastPress == KEY_ENTER) {
         pause = !pause;
         lastPress = null;
     }
+}
+
+function repaint() {
+    window.requestAnimationFrame(repaint);
+    paint(ctx);
 }
 
 function run() {
@@ -176,7 +200,7 @@ function init() {
     // Get canvas and context
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
-
+   
     // Create player and food
     player = new Rectangle(40, 40, 10, 10);
     food = new Rectangle(80, 80, 10, 10);
@@ -186,15 +210,10 @@ function init() {
     wall.push(new Rectangle(100, 100, 10, 10));
     wall.push(new Rectangle(200, 50, 10, 10));
     wall.push(new Rectangle(200, 100, 10, 10));
-
-    //Start game
+    
+    // Start game
     run();
     repaint();
-}
-
-function repaint() {
-    window.requestAnimationFrame(repaint);
-    paint(ctx);
 }
 
 window.addEventListener('load', init, false);
