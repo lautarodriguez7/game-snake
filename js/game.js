@@ -1,9 +1,10 @@
 var canvas = null,
     ctx = null,
-    x = 50,
-    y = 50,
+    player = null,
     dir = 0;
     lastPress = null,
+    food = null,
+    score = 0,
     pause = true;
     
 
@@ -26,6 +27,35 @@ window.requestAnimationFrame = (function () {
         lastPress = evt.which; // Through this method, we can make decisions in the game knowing the last key pressed.
     }, false);
 
+function Rectangle(x, y, width, height) {
+    this.x = (x == null) ? 0 : x;
+    this.y = (y == null) ? 0 : y;
+    this.width = (width == null) ? 0 : width;
+    this.height = (height == null) ? this.width : height;
+
+    this.intersects = function (rect) {
+        if (rect == null) {
+            window.console.warn('Missing parameters on function intersects');
+    } else {
+        return (this.x < rect.x + rect.width &&
+            this.x + this.width > rect.x &&
+            this.y < rect.y + rect.height &&
+            this.y + this.height > rect.y);
+        }
+    };
+    this.fill = function (ctx) {
+        if (ctx == null) {
+            window.console.warn('Missing parameters on function fill');
+        } else {
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        };
+    }
+
+function random(max) {
+    return Math.floor(Math.random() * max);
+}
+
 function paint(ctx) {
     //clean canvas
     ctx.fillStyle = '#000';
@@ -39,21 +69,23 @@ function paint(ctx) {
     ctx.fillStyle = '#fff'
     ctx.fillText('Last Press: ' + lastPress, 0, 20);
 
+    //Draw score
+    ctx.fillText('Score: ' + score, 0, 10);
+
     //Draw pause
     if (pause) {
         ctx.textAlign = 'center';
         ctx.fillText('PAUSE', 150, 75);
         ctx.textAlign = 'left';
     }
+
+    //draw food
+    ctx.fillStyle = '#f00';
+    food.fill(ctx);
 }
 
 
 function act() {
-  /*  x += 2; //movement
-    if (x > canvas.width) { //when you pass the screen to return(x=width)
-        x= 0; 
-    } */
-
     if (!pause) { 
     // Change the direction
         if (lastPress == KEY_UP) {
@@ -111,8 +143,13 @@ function run() {
 }
 
 function init() {
+    // Get canvas and context
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
+
+    // Create player and food
+    player = new Rectangle(40, 40, 10, 10);
+    food = new Rectangle(80, 80, 10, 10);
 
     //Start game
     run();
@@ -125,3 +162,4 @@ function repaint() {
 }
 
 window.addEventListener('load', init, false);
+
