@@ -1,14 +1,14 @@
 var canvas = null,
     ctx = null,
     player = null,
-    dir = 0;
+    dir = 0,
     lastPress = null,
     food = null,
     score = 0,
     pause = true;
     
-
-var KEY_LEFT = 37, //movement on the keyboard
+//movement on the keyboard
+var KEY_LEFT = 37,
     KEY_UP = 38,
     KEY_RIGHT = 39,
     KEY_DOWN = 40;
@@ -54,16 +54,20 @@ function Rectangle(x, y, width, height) {
 
 function random(max) {
     return Math.floor(Math.random() * max);
-}
+    }
 
 function paint(ctx) {
     //clean canvas
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Draw square
-    ctx.fillStyle = '#0fff';
-    ctx.fillRect(x, y, 20, 10);
+   //draw player
+   ctx.fillStyle = '#0f0';
+   player.fill(ctx);
+
+    //draw food
+    ctx.fillStyle = '#f00';
+    food.fill(ctx);
 
     // Debug last key pressed
     ctx.fillStyle = '#fff'
@@ -77,11 +81,7 @@ function paint(ctx) {
         ctx.textAlign = 'center';
         ctx.fillText('PAUSE', 150, 75);
         ctx.textAlign = 'left';
-    }
-
-    //draw food
-    ctx.fillStyle = '#f00';
-    food.fill(ctx);
+    }  
 }
 
 
@@ -103,32 +103,40 @@ function act() {
 
         // Move rect
         if (dir == 0) {
-            y -= 10;
+            player.y -= 10;
         }
         if (dir == 1) {
-            x -= 10;
+            player.x -= 10;
         }
         if (dir == 2) {
-            y += 10;
+            player.y += 10;
         }
         if (dir == 3) {
-            x += 10;
+            player.x += 10;
         }
 
-        //Out Screen
-        if (x > canvas.width) {
-            x = 0;
+      // Out Screen
+        if (player.x > canvas.width) {
+        player.x = 0;
         }
-        if (y > canvas.height) {
-            y = 0;
+        if (player.y > canvas.height) {
+        player.y = 0;
         }
-        if (x < 0) {
-            x = canvas.width;
+        if (player.x < 0) {
+        player.x = canvas.width;
         }
-        if (y < 0) {
-            y = canvas.height;
+        if (player.y < 0) {
+        player.y = canvas.height;
+        }
+         // Food instersects
+        if (player.intersects(food)) {
+            score += 1;
+            food.x = random(canvas.width / 10 - 1) * 10;
+            food.y = random(canvas.height / 10 -1) * 10;
         }
     }
+
+   
 
     //Pause/Unpause
     if (lastPress == KEY_ENTER) {
