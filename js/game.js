@@ -65,8 +65,12 @@ function reset() {
     dir = 1;
     body.x = 40;
     body.y = 40;
+    body.length = 0;
+    body.push(new Rectangle(40, 40, 10, 10));
+    body.push(new Rectangle(0, 0, 10, 10));
+    body.push(new Rectangle(0, 0, 10, 10));
     food.x = random(canvas.width / 10 - 1) * 10;
-    food.y = random(canvas.height / 10 - 1) * 10
+    food.y = random(canvas.height / 10 - 1) * 10;
     gameover = false;
 }
 
@@ -81,6 +85,12 @@ function paint(ctx) {
    //draw body
    ctx.fillStyle = '#0f0';
    body.fill(ctx);
+
+   //draw player
+   ctx.fillStyle = '0f0';
+   for (i = 0, l = body.length; i < l; i += 1) {
+       body[i].fill(ctx);
+   }
 
    // Draw walls
     ctx.fillStyle = '#999';
@@ -161,6 +171,21 @@ function act() {
     if (body.y < 0) {
     body.y = canvas.height;
     }
+
+     // Move body
+     for (i = body.length - 1; i > 0; i -=1) {
+        body[i].x = body [i - 1].x;
+        body[i].y = body [i - 1].y;
+    }
+
+    // Body intersects
+    for (i = 2, l = body.length; i < l; i += 1) {
+        if (body[0].intersects(body[i])) {
+            gameover = true;
+            pause = true;
+        }
+    }
+
     // Food instersects
     if (body.intersects(food)) {
         score += 1;
