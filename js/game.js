@@ -16,6 +16,9 @@ var KEY_ENTER = 13,
     body = new Array(),
     // body = null, changed for body
     food = null;
+    
+    var iBody = new Image(),
+        iFood = new Image();
 
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
