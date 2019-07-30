@@ -86,7 +86,13 @@ Rectangle.prototype = {
             this.y + this.height > rect.y);
         }
     },
-    
+    fill: function (ctx) {
+        if (ctx === undefined) {
+            window.console.warn('Missing parameters on function fill');
+        } else {
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    },
 }
 
 function random(max) {
