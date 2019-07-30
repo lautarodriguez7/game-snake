@@ -53,7 +53,7 @@ function Rectangle(x, y, width, height) {
             this.y + this.height > rect.y);
         }
         this.drawImage = function (ctx, img) {
-            if (img == null) {
+            if (img === undefined) {
                 window.console.warn('Missing parameters on function drawImage');
             } else {
                 if (img.width) {
