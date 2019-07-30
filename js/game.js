@@ -86,6 +86,7 @@ Rectangle.prototype = {
             this.y + this.height > rect.y);
         }
     },
+
     fill: function (ctx) {
         if (ctx === undefined) {
             window.console.warn('Missing parameters on function fill');
@@ -93,6 +94,14 @@ Rectangle.prototype = {
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     },
+
+    drawImage: function (ctx, img) {
+        if (img === undefined) {
+            window.console.warn('Missing parameters on function drawImage');
+        } else {
+            ctx.strokeRect(this.x, this.y, this.width, this.height);
+        }
+    }
 }
 
 function random(max) {
