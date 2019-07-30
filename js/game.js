@@ -178,16 +178,16 @@ function act() {
         dir = 3;
     }
     // Move head
-    if (dir == 0) {
+    if (dir === 0) {
         body[0].y -= 10;
     }
-    if (dir == 1) {
+    if (dir === 1) {
         body[0].x -= 10;
     }
-    if (dir == 2) {
+    if (dir === 2) {
         body[0].y += 10;
     }
-    if (dir == 3) {
+    if (dir === 3) {
         body[0].x += 10;
     }
     
