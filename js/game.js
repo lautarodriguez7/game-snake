@@ -18,7 +18,9 @@ var KEY_ENTER = 13,
     food = null;
     
     var iBody = new Image(),
-        iFood = new Image();
+        iFood = new Image(),
+        aEat = new Audio(),
+        aDie = new Audio();
 
 window.requestAnimationFrame = (function () {
     return window.requestAnimationFrame ||
