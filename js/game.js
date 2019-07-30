@@ -15,7 +15,7 @@ var KEY_ENTER = 13,
     dir = 0,
     score = 0,
     //wall = new Array(),
-    body = [],
+    body = [], // most fast than new array()
     // body = null, changed for body
     food = null;
     //images and sounds
@@ -74,8 +74,18 @@ function Rectangle(x, y, width, height) {
     }
 
 function random(max) {
-    return Math.floor(Math.random() * max);
+    //return Math.floor(Math.random() * max);
+    return ~~(Math.random() * max); //most fast
+}
+
+function canPlayOgg() {
+    var aud = new Audio();
+    if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
+        return true;
+    } else {
+        return false;
     }
+} 
 
 function reset() {
     score = 0;
@@ -230,19 +240,6 @@ function act() {
     if (lastPress == KEY_ENTER) {
         pause = !pause;
         lastPress = null;
-    }
-}
-
-function random(max) {
-    return ~~(Math.random() * max);
-}
-
-function canPlayOgg() {
-    var aud = new Audio();
-    if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
-        return true;
-    } else {
-        return false;
     }
 }
 
