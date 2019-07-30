@@ -105,7 +105,7 @@ function paint(ctx) {
     //ctx.fillStyle = '0f0';
     for (i = 0, l = body.length; i < l; i += 1) {
        //body[i].fill(ctx);
-       ctx.drawImage(iFood, food.x, food.y);
+       food.drawImage(ctx, iFood);
     }
 
    // Draw walls
@@ -230,6 +230,15 @@ function act() {
     if (lastPress == KEY_ENTER) {
         pause = !pause;
         lastPress = null;
+    }
+}
+
+function canPlayOgg() {
+    var aud = new Audio();
+    if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
+        return true;
+    } else {
+        return false;
     }
 }
 
