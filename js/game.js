@@ -233,6 +233,10 @@ function act() {
     }
 }
 
+function random(max) {
+    return ~~(Math.random() * max);
+}
+
 function canPlayOgg() {
     var aud = new Audio();
     if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
