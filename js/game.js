@@ -38,13 +38,13 @@ window.requestAnimationFrame = (function () {
     }, false);
 
 function Rectangle(x, y, width, height) {
-    this.x = (x == null) ? 0 : x;
-    this.y = (y == null) ? 0 : y;
-    this.width = (width == null) ? 0 : width;
-    this.height = (height == null) ? this.width : height;
+    this.x = (x === undefined) ? 0 : x;
+    this.y = (y === undefined) ? 0 : y;
+    this.width = (width === undefined) ? 0 : width;
+    this.height = (height === undefined) ? this.width : height;
 
     this.intersects = function (rect) {
-        if (rect == null) {
+        if (rect === undefined) {
             window.console.warn('Missing parameters on function intersects');
     } else {
         return (this.x < rect.x + rect.width &&
