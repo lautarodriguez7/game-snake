@@ -73,6 +73,22 @@ function Rectangle(x, y, width, height) {
         };*/
     }
 
+Rectangle.prototype = {
+    constructor: Rectangle,
+
+    intersects: function (rect) {
+        if (rect === undefined) {
+            window.console.warn('Missing parameters on function intersects');
+    } else {
+        return (this.x < rect.x + rect.width &&
+            this.x + this.width > rect.x &&
+            this.y < rect.y + rect.height &&
+            this.y + this.height > rect.y);
+        }
+    },
+    
+}
+
 function random(max) {
     //return Math.floor(Math.random() * max);
     return ~~(Math.random() * max); //most fast
@@ -215,7 +231,7 @@ function act() {
         }
     }
 
-    // Food instersects
+    // Food intersects
     if (body[0].intersects(food)) {
         body.push(new Rectangle(food.x, food.y, 10, 10));
         score += 1;
