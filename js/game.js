@@ -52,6 +52,16 @@ function Rectangle(x, y, width, height) {
             this.y < rect.y + rect.height &&
             this.y + this.height > rect.y);
         }
+        this.drawImage = function (ctx, img) {
+            if (img == null) {
+                window.console.warn('Missing parameters on function drawImage');
+            } else {
+                if (img.width) {
+                    ctx.drawImage(img, this.x, this.y);
+                } else {
+                    ctx.strokeRect(this.x, this.y, this.width, this.height);
+            }
+        }
     };
 
     this.fill = function (ctx) {
