@@ -89,11 +89,12 @@ function paint(ctx) {
    ctx.fillStyle = '#0f0';
    body.fill(ctx);
 
-   //draw player
-   ctx.fillStyle = '0f0';
-   for (i = 0, l = body.length; i < l; i += 1) {
-       body[i].fill(ctx);
-   }
+    //draw player
+    //ctx.fillStyle = '0f0';
+    for (i = 0, l = body.length; i < l; i += 1) {
+       //body[i].fill(ctx);
+       ctx.drawImage(iFood, food.x, food.y);
+    }
 
    // Draw walls
     ctx.fillStyle = '#fff';
@@ -102,8 +103,9 @@ function paint(ctx) {
     }  
     
     //draw food
-    ctx.fillStyle = '#f00';
-    food.fill(ctx);
+    //ctx.fillStyle = '#f00';
+    //food.fill(ctx);
+    ctx.drawImage(iFood, food.x, food.y);
 
     // Debug last key pressed
     ctx.fillStyle = '#f0ff'
