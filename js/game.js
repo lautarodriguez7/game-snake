@@ -146,42 +146,42 @@ function act() {
     if (lastPress == KEY_UP && dir != 2) {
         dir = 0;
     }
-    if (lastPress == KEY_LEFT && != 3) {
+    if (lastPress == KEY_LEFT && dir != 3) {
         dir = 1;
     }
-    if (lastPress == KEY_DOWN && != 0) {
+    if (lastPress == KEY_DOWN && dir != 0) {
         dir = 2;
     }
-    if (lastPress == KEY_RIGHT && != 1) {
+    if (lastPress == KEY_RIGHT && dir != 1) {
         dir = 3;
     }
     // Move head
     if (dir == 0) {
-        body.y -= 10;
+        body[0].y -= 10;
     }
     if (dir == 1) {
-        body.x -= 10;
+        body[0].x -= 10;
     }
     if (dir == 2) {
-        body.y += 10;
+        body[0].y += 10;
     }
     if (dir == 3) {
-        body.x += 10;
+        body[0].x += 10;
     }
     
     
   // Out Screen
-    if (body.x > canvas.width) {
-    body.x = 0;
+    if (body[0].x > canvas.width) {
+    body[0].x = 0;
     }
-    if (body.y > canvas.height) {
-    body.y = 0;
+    if (body[0].y > canvas.height) {
+    body[0].y = 0;
     }
-    if (body.x < 0) {
+    if (body[0].x < 0) {
     body.x = canvas.width;
     }
-    if (body.y < 0) {
-    body.y = canvas.height;
+    if (body[0].y < 0) {
+    body[0].y = canvas.height;
     }
 
     // Body Intersects
@@ -189,14 +189,17 @@ function act() {
         if (body[0].intersects(body[i])) {
         gameover = true;
         pause = true;
+        aDie.play();
         }
     }
 
     // Food instersects
     if (body[0].intersects(food)) {
-        body.push(new Rectangle(food.x, food.y, 10, 10));        score += 1;
+        body.push(new Rectangle(food.x, food.y, 10, 10));
+        score += 1;
         food.x = random(canvas.width / 10 - 1) * 10;
         food.y = random(canvas.height / 10 -1) * 10;
+        aEat.play();
     }
     // Wall Intersects
     for (i = 0, l = wall.length; i < l; i += 1) {
@@ -239,8 +242,7 @@ function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
    
-    // Create body and food
-    body = new Rectangle(40, 40, 10, 10);
+    // Create food
     food = new Rectangle(80, 80, 10, 10);
     
     // Create walls
