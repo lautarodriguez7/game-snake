@@ -43,7 +43,7 @@ function Rectangle(x, y, width, height) {
     this.width = (width === undefined) ? 0 : width;
     this.height = (height === undefined) ? this.width : height;
 
-    this.intersects = function (rect) {
+   /* this.intersects = function (rect) {
         if (rect === undefined) {
             window.console.warn('Missing parameters on function intersects');
     } else {
@@ -70,7 +70,7 @@ function Rectangle(x, y, width, height) {
         } else {
             ctx.fillRect(this.x, this.y, this.width, this.height);
             }
-        };
+        };*/
     }
 
 function random(max) {
