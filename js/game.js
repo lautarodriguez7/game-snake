@@ -12,11 +12,11 @@ var KEY_ENTER = 13,
     gameover = true,
     dir = 0,
     score = 0,
-    wall = new Array(),
+    //wall = new Array(),
     body = new Array(),
     // body = null, changed for body
     food = null;
-    
+    //images and sounds
     var iBody = new Image(),
         iFood = new Image(),
         aEat = new Audio(),
@@ -233,6 +233,8 @@ function init() {
     // Load assets
     iBody.src = 'assets/body.png';
     iFood.src = 'assets/fruits.png';
+    aEat.src = 'assets/chomp.oga';
+    aDie.src = 'assets/dies.oga';
 
     // Get canvas and context
     canvas = document.getElementById('canvas');
