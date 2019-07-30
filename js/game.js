@@ -226,6 +226,10 @@ function run() {
 }
 
 function init() {
+    // Load assets
+    iBody.src = 'assets/body.png';
+    iFood.src = 'assets/fruits.png';
+
     // Get canvas and context
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
