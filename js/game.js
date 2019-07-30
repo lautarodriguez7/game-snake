@@ -1,3 +1,4 @@
+(function (window, undefined){ //It is used to be local and has no global problems
 //movements the keyboard
 var KEY_ENTER = 13,
     KEY_LEFT = 37,
@@ -257,4 +258,4 @@ function init() {
 }
 
 window.addEventListener('load', init, false);
-
+}(window));
