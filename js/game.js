@@ -99,10 +99,15 @@ Rectangle.prototype = {
         if (img === undefined) {
             window.console.warn('Missing parameters on function drawImage');
         } else {
-            ctx.strokeRect(this.x, this.y, this.width, this.height);
-        }
+            if (img.width) {
+                ctx.drawImage(img, this.x, this.y);
+            } else {
+                ctx.strokeRect(this.x, this.y, this.width, this.height);
+            }
+        } 
     }
-}
+};
+
 
 function random(max) {
     //return Math.floor(Math.random() * max);
