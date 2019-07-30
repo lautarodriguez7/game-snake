@@ -15,7 +15,7 @@ var KEY_ENTER = 13,
     dir = 0,
     score = 0,
     //wall = new Array(),
-    body = new Array(),
+    body = [],
     // body = null, changed for body
     food = null;
     //images and sounds
