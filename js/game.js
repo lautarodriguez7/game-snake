@@ -11,7 +11,9 @@ var KEY_ENTER = 13,
     FPS = 0,
     frames = 0,
     acumDelta = 0,
-    
+    x = 50,
+    y = 50,
+
     canvas = null,
     ctx = null,
     lastPress = null,
