@@ -280,15 +280,8 @@ function repaint() {
 }
 
 function run() {
-    window.requestAnimationFrame(run); //optimize the game
     setTimeout(run, 50);
     act();
-    var now = Date.now(),
-        deltaTime = (now - lastUpdate) / 100;
-    if (deltaTime > 1) {
-        deltaTime = 0;
-    }
-    lastUpdate = now;
 }
 
 
