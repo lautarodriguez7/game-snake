@@ -286,6 +286,12 @@ function run() {
 
 
 function init() {
+    // Get canvas and context
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 300;
+
     // Load assets
     iBody.src = 'assets/body.png';
     iFood.src = 'assets/fruits.png';
@@ -297,10 +303,6 @@ function init() {
         aDie.src = 'assets/dies.m4a';
     }
 
-    // Get canvas and context
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-   
     // Create food
     food = new Rectangle(80, 80, 10, 10);
     
