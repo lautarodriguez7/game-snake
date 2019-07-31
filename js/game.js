@@ -243,7 +243,7 @@ function act() {
             gameover = true;
             pause = true;
         }
-    */}
+    }*/
      // Body Intersects 
      for (i = 2, l = body.length; i < l; i += 1) {
         if (body[0].intersects(body[i])) {
@@ -313,4 +313,4 @@ function init() {
 
 window.addEventListener('load', init, false);
 window.addEventListener('resize', resize, false);
-}(window);
+}(window));
