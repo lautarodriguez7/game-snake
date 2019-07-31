@@ -110,7 +110,7 @@ function resize() {
     bufferOffsetY = (canvas.height - (buffer.height * bufferScale)) / 2;
 }
 
-function canPlayOgg() {
+function canPlayOgg() {  ///???
     var aud = new Audio();
     if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
         return true;
@@ -178,10 +178,6 @@ function paint(ctx) {
 function act() {
     var i=0,
         l=0;
-    var x += 2;
-    if (x > canvas.width) {
-        x = 0;
-    }
 
     if (!pause) { 
     //Game Over reset
@@ -213,13 +209,13 @@ function act() {
         body[0].y -= 10;
     }
     if (dir === 1) {
-        body[0].x -= 10;
+        body[0].x += 10;
     }
     if (dir === 2) {
         body[0].y += 10;
     }
     if (dir === 3) {
-        body[0].x += 10;
+        body[0].x -= 10;
     }
     
     
@@ -237,16 +233,7 @@ function act() {
     body[0].y = canvas.height - body[0].height;
     }
 
-    // Body Intersects
-    for (i = 2, l = body.length; i < l; i += 1) {
-        if (body[0].intersects(body[i])) {
-        gameover = true;
-        pause = true;
-        aDie.play();
-        }
-    }
-
-    // Food intersects
+       // Food intersects
     if (body[0].intersects(food)) {
         body.push(new Rectangle(food.x, food.y, 10, 10));
         score += 1;
@@ -255,7 +242,7 @@ function act() {
         aEat.play();
     }
     // Wall Intersects
-    for (i = 0, l = wall.length; i < l; i += 1) {
+   /* for (i = 0, l = wall.length; i < l; i += 1) {
         if (food.intersects(wall[i])) {
             food.x = random(canvas.width / 10 - 1) * 10;
             food.y = random(canvas.height / 10 - 1) * 10;
@@ -264,11 +251,19 @@ function act() {
             gameover = true;
             pause = true;
         }
+    */}
+     // Body Intersects 
+     for (i = 2, l = body.length; i < l; i += 1) {
+        if (body[0].intersects(body[i])) {
+            gameover = true;
+            pause = true;
+            aDie.play();
+        }
     }
 }
 
     //Pause/Unpause
-    if (lastPress == KEY_ENTER) {
+    if (lastPress === KEY_ENTER) {
         pause = !pause;
         lastPress = null;
     }
