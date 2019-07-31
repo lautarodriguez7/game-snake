@@ -7,6 +7,11 @@ var KEY_ENTER = 13,
     KEY_RIGHT = 39,
     KEY_DOWN = 40,
 
+    lastUpdate = 0,
+    FPS = 0,
+    frames = 0,
+    acumDelta = 0,
+    
     canvas = null,
     ctx = null,
     lastPress = null,
@@ -314,6 +319,7 @@ function run() {
     setTimeout(run, 50);
     act();
 }
+
 
 function init() {
     // Load assets
