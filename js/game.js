@@ -271,7 +271,12 @@ function act() {
 
 function repaint() {
     window.requestAnimationFrame(repaint);
-    paint(ctx);
+    paint(bufferCtx);
+
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height);
 }
 
 function run() {
