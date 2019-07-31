@@ -318,8 +318,13 @@ function init() {
     // Load assets
     iBody.src = 'assets/body.png';
     iFood.src = 'assets/fruits.png';
+    if (canPlayOgg()) {
     aEat.src = 'assets/chomp.oga';
     aDie.src = 'assets/dies.oga';
+    } else {
+        aEat.src = 'assets/chomp.m4a';
+        aDie.src = 'assets/dies.m4a';
+    }
 
     // Get canvas and context
     canvas = document.getElementById('canvas');
@@ -329,10 +334,10 @@ function init() {
     food = new Rectangle(80, 80, 10, 10);
     
     // Create walls
-    wall.push(new Rectangle(100, 50, 10, 10));
-    wall.push(new Rectangle(100, 100, 10, 10));
-    wall.push(new Rectangle(200, 50, 10, 10));
-    wall.push(new Rectangle(200, 100, 10, 10));
+    //wall.push(new Rectangle(100, 50, 10, 10));
+    //wall.push(new Rectangle(100, 100, 10, 10));
+    //wall.push(new Rectangle(200, 50, 10, 10));
+    //wall.push(new Rectangle(200, 100, 10, 10));
     
     // Start game
     run();
