@@ -179,7 +179,7 @@ function paint(ctx) {
     //ctx.fillStyle = '0f0';
     for (i = 0, l = body.length; i < l; i += 1) {
        //body[i].fill(ctx);
-       food.drawImage(ctx, iFood);
+       body[i].drawImage(ctx, iBody);
     }
 
    // Draw walls
@@ -191,6 +191,7 @@ function paint(ctx) {
     //draw food
     //ctx.fillStyle = '#f00';
     //food.fill(ctx);
+    ctx.strokeStyle = '#f00';
     ctx.drawImage(iFood, food.x, food.y);
 
     // Debug last key pressed
