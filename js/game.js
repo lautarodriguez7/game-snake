@@ -310,6 +310,7 @@ function repaint() {
 }
 
 function run() {
+    window.requestAnimationFrame(run); //optimize the game
     setTimeout(run, 50);
     act();
 }
