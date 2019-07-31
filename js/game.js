@@ -109,6 +109,7 @@ function resize() {
     bufferOffsetX = (canvas.width - (buffer.width * bufferScale)) / 2;
     bufferOffsetY = (canvas.height - (buffer.height * bufferScale)) / 2;
 }
+
 function canPlayOgg() {
     var aud = new Audio();
     if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
@@ -136,32 +137,29 @@ function paint(ctx) {
 
     //clean canvas 
     ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, buffer.width, buffer.height);
 
     //draw player 
-    //ctx.fillStyle = '0f0';
+    ctx.strokeStyle = '0f0';
     for (i = 0, l = body.length; i < l; i += 1) {
-       //body[i].fill(ctx);
-       body[i].drawImage(ctx, iBody);
+        body[i].drawImage(ctx, iBody);
     }
 
-   // Draw walls 
+   // Draw walls
     /*ctx.fillStyle = '#fff';
     for (i = 0, l = wall.length; i < l; i += 1) {
         wall[i].fill(ctx);
     }  */
     
     //draw food 
-    //ctx.fillStyle = '#f00';
-    //food.fill(ctx);
     ctx.strokeStyle = '#f00';
-    ctx.drawImage(iFood, food.x, food.y);
+    ctx.drawImage(ctx, iFood);
 
     // Debug last key pressed 
-    ctx.fillStyle = '#f0ff'
     //ctx.fillText('Last Press: ' + lastPress, 0, 20);
 
     //Draw score 
+    ctx.fillStyle = '#fff';
     ctx.fillText('Score: ' + score, 0, 10);
 
     // Draw pause 
