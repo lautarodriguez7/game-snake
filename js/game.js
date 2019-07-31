@@ -11,8 +11,6 @@ var KEY_ENTER = 13,
     FPS = 0,
     frames = 0,
     acumDelta = 0,
-    x = 50,
-    y = 50,
 
     canvas = null,
     ctx = null,
@@ -47,7 +45,10 @@ window.requestAnimationFrame = (function () {
     }());
 
     document.addEventListener('keydown', function(evt) {
-        lastPress = evt.which; // Through this method, we can make decisions in the game knowing the last key pressed.
+        if (evt.which >= 37 && evt.which <= 40) {
+            evt.preventDefault();
+        }
+        lastPress = evt.which;
     }, false);
 
 function Rectangle(x, y, width, height) {
