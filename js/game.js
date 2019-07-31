@@ -220,6 +220,11 @@ function paint(ctx) {
 function act() {
     var i=0,
         l=0;
+    var x += 2;
+    if (x > canvas.width) {
+        x = 0;
+    }
+
     if (!pause) { 
     //Game Over reset
     if (gameover) {
