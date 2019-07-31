@@ -113,8 +113,8 @@ function reset() {
     body.push(new Rectangle(40, 40, 10, 10));
     body.push(new Rectangle(0, 0, 10, 10));
     body.push(new Rectangle(0, 0, 10, 10));
-    food.x = random(canvas.width / 10 - 1) * 10;
-    food.y = random(canvas.height / 10 - 1) * 10;
+    food.x = random(buffer.width / 10 - 1) * 10;
+    food.y = random(buffer.height / 10 - 1) * 10;
     gameover = false;
 }
 
@@ -182,13 +182,13 @@ function act() {
     if (lastPress == KEY_UP && dir != 2) {
         dir = 0;
     }
-    if (lastPress == KEY_LEFT && dir != 3) {
+    if (lastPress == KEY_RIGHT && dir != 3) {
         dir = 1;
     }
     if (lastPress == KEY_DOWN && dir != 0) {
         dir = 2;
     }
-    if (lastPress == KEY_RIGHT && dir != 1) {
+    if (lastPress == KEY_LEFT && dir != 1) {
         dir = 3;
     }
     // Move head
@@ -224,8 +224,8 @@ function act() {
     if (body[0].intersects(food)) {
         body.push(new Rectangle(food.x, food.y, 10, 10));
         score += 1;
-        food.x = random(canvas.width / 10 - 1) * 10;
-        food.y = random(canvas.height / 10 -1) * 10;
+        food.x = random(buffer.width / 10 - 1) * 10;
+        food.y = random(buffer.height / 10 -1) * 10;
         aEat.play();
     }
     // Wall Intersects
@@ -263,7 +263,7 @@ function repaint() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height);
+    ctx.drawImage(buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height);
 }
 
 function run() {
@@ -275,9 +275,7 @@ function run() {
 function init() {
     // Get canvas and context
     canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');
-    canvas.width = 600;
-    canvas.height = 300;
+    ctx = canvas.getContext('2d');buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height
 
     // Load buffer
     buffer = document.createElement('canvas');
