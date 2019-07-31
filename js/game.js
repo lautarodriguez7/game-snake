@@ -111,15 +111,6 @@ function resize() {
     bufferOffsetY = (canvas.height - (buffer.height * bufferScale)) / 2;
 }
 
-function canPlayOgg() {  ///???
-    var aud = new Audio();
-    if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
-        return true;
-    } else {
-        return false;
-    }
-} 
-
 function reset() {
     score = 0;
     dir = 1;
