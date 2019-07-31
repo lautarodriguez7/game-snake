@@ -1,3 +1,4 @@
+/*jslint bitwise:true, es5: true */
 (function (window, undefined){ //It is used to be local and has no global problems
 'use strict'; //we indicate that we use current code
 //movements the keyboard
@@ -292,16 +293,17 @@ function init() {
     canvas.width = 600;
     canvas.height = 300;
 
+    // Load buffer
+    buffer = document.createElement('canvas');
+    bufferCtx = buffer.getContext('2d');
+    buffer.width = 300;
+    buffer.height = 150;
+
     // Load assets
     iBody.src = 'assets/body.png';
     iFood.src = 'assets/fruits.png';
-    if (canPlayOgg()) {
-    aEat.src = 'assets/chomp.oga';
-    aDie.src = 'assets/dies.oga';
-    } else {
-        aEat.src = 'assets/chomp.m4a';
-        aDie.src = 'assets/dies.m4a';
-    }
+    aEat.src = 'assets/chomp.m4a';
+    aDie.src = 'assets/dies.m4a';
 
     // Create food
     food = new Rectangle(80, 80, 10, 10);
@@ -313,9 +315,11 @@ function init() {
     //wall.push(new Rectangle(200, 100, 10, 10));
     
     // Start game
+    resize();
     run();
     repaint();
 }
 
 window.addEventListener('load', init, false);
-}(window));
+window.addEventListener('resize', resize, false);
+}(window);
