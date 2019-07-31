@@ -27,7 +27,6 @@ var KEY_ENTER = 13,
     score = 0,
     //wall = new Array(),
     body = [], // most fast than new array()
-    // body = null, changed for body
     food = null;
     //images and sounds
     var iBody = new Image(),
@@ -57,34 +56,6 @@ function Rectangle(x, y, width, height) {
     this.width = (width === undefined) ? 0 : width;
     this.height = (height === undefined) ? this.width : height;
 
-   /* this.intersects = function (rect) {
-        if (rect === undefined) {
-            window.console.warn('Missing parameters on function intersects');
-    } else {
-        return (this.x < rect.x + rect.width &&
-            this.x + this.width > rect.x &&
-            this.y < rect.y + rect.height &&
-            this.y + this.height > rect.y);
-        }
-        this.drawImage = function (ctx, img) {
-            if (img === undefined) {
-                window.console.warn('Missing parameters on function drawImage');
-            } else {
-                if (img.width) {
-                    ctx.drawImage(img, this.x, this.y);
-                } else {
-                    ctx.strokeRect(this.x, this.y, this.width, this.height);
-            }
-        }
-    };
-
-    this.fill = function (ctx) {
-        if (ctx == null) {
-            window.console.warn('Missing parameters on function fill');
-        } else {
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
-        };*/
     }
 
 Rectangle.prototype = {
@@ -122,40 +93,22 @@ Rectangle.prototype = {
     }
 };
 
-/*Rectangle.prototype.intersects = function (rect) {
-    if (rect === undefined) {
-        window.console.warn('Missing parameters on function intersects');
-    } else {
-        return (this.x < rect.x + rect.width &&
-            this.x + this.width > rect.x &&
-            this.y < rect.y + rect.height &&
-            this.y + this.height > rect.y);
-        }
-    };
-Rectangle.prototype.fill = function (ctx) {
-    if (ctx === undefined) {
-        window.console.warn('Missing parameters on function fill');
-    } else {
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-};
-Rectangle.prototype.drawImage = function (ctx, img) {
-    if (img === undefined) {
-        window.console.warn('Missing parameters on function drawImage');
-    } else {
-        if (img.width) {
-            ctx.drawImage(img, this.x, this.y);
-        } else {
-            ctx.strokeRect(this.x, this.y, this.width, this.height);
-        }
-    }
-};*/
-
 function random(max) {
     //return Math.floor(Math.random() * max);
     return ~~(Math.random() * max); //most fast
 }
 
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    var w = window.innerWidth / buffer.width;
+    var h = window.innerHeight / buffer.height;
+    bufferScale = Math.min(h, w);
+
+    bufferOffsetX = (canvas.width - (buffer.width * bufferScale)) / 2;
+    bufferOffsetY = (canvas.height - (buffer.height * bufferScale)) / 2;
+}
 function canPlayOgg() {
     var aud = new Audio();
     if (aud.canPlayType('audio/ogg').replace(/no/, '')) {
