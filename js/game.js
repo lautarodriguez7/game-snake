@@ -164,13 +164,19 @@ function reset() {
     gameover = false;
 }
 
-function paint(ctx) {
-    var i = 0 ,
-        l = 0;
+//Main Scene
+mainscene = new scene();
 
+mainscene.paint = function (ctx) {
     //clean canvas 
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, buffer.width, buffer.height);
+    ctx.fillStyle = '#030';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw title
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.fillText('SNAKE',150, 60);
+    ctx.fillText('Press Enter',150, 90);
 
     //draw player 
     ctx.strokeStyle = '0f0';
