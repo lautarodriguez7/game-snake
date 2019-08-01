@@ -93,15 +93,6 @@ Rectangle.prototype = {
     }
 };
 
-function Scene() {
-    this.id = scenes.length;
-    scenes.push(this);
-}
-
-function random(max) {
-    //return Math.floor(Math.random() * max);
-    return ~~(Math.random() * max); //most fast
-}
 
 Scene.prototype = {
     constructor: Scene,
@@ -113,6 +104,16 @@ Scene.prototype = {
 function loadScene(scene) {
     currentScene = scene.id;
     scenes[currentScene].load();
+}
+
+function Scene() {
+    this.id = scenes.length;
+    scenes.push(this);
+}
+
+function random(max) {
+    //return Math.floor(Math.random() * max);
+    return ~~(Math.random() * max); //most fast
 }
 
 function resize() {
