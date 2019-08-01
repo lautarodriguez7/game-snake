@@ -152,18 +152,6 @@ function init() {
     repaint();
 }
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    var w = window.innerWidth / buffer.width;
-    var h = window.innerHeight / buffer.height;
-    bufferScale = Math.min(h, w);
-
-    bufferOffsetX = (canvas.width - (buffer.width * bufferScale)) / 2;
-    bufferOffsetY = (canvas.height - (buffer.height * bufferScale)) / 2;
-}
-
 function reset() {
     score = 0;
     dir = 1;
