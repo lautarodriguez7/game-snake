@@ -188,7 +188,14 @@ mainscene.paint = function (ctx) {
         food.x = random(buffer.width / 10 - 1) * 10;
         food.y = random(buffer.height / 10 - 1) * 10;
         gameover = false;
-    }
+    };
+
+gameScene.paint = function (ctx) {
+    var i = 0,
+        l = 0;
+    //clean cavas
+    ctx.fillStyle = '#030';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     //draw player 
     ctx.strokeStyle = '0f0';
@@ -211,6 +218,7 @@ mainscene.paint = function (ctx) {
 
     //Draw score 
     ctx.fillStyle = '#fff';
+    ctx.textAlign = 'left';
     ctx.fillText('Score: ' + score, 0, 10);
 
     // Draw pause 
@@ -221,7 +229,6 @@ mainscene.paint = function (ctx) {
         } else {
         ctx.fillText('PAUSE', 150, 75);
         }
-        ctx.textAlign = 'left';
     }
 }
 
