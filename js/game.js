@@ -108,6 +108,11 @@ Scene.prototype = {
     act: function () {}
 };
 
+function loadScene(scene) {
+    currentScene = scene.id;
+    scenes[currentScene].load();
+}
+
 function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
