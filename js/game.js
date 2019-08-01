@@ -130,13 +130,7 @@ function run() {
 function init() {
     // Get canvas and context
     canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height
-
-    // Load buffer
-    buffer = document.createElement('canvas');
-    bufferCtx = buffer.getContext('2d');
-    buffer.width = 300;
-    buffer.height = 150;
+    ctx = canvas.getContext('2d');
 
     // Load assets
     iBody.src = 'assets/body.png';
@@ -154,7 +148,6 @@ function init() {
     //wall.push(new Rectangle(200, 100, 10, 10));
     
     // Start game
-    resize();
     run();
     repaint();
 }
