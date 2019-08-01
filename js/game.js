@@ -277,12 +277,12 @@ function act() {
 
 function repaint() {
     window.requestAnimationFrame(repaint);
-    paint(bufferCtx);
+    /*paint(bufferCtx);
 
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height);
+    ctx.drawImage(buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height); */
 }
 
 function run() {
