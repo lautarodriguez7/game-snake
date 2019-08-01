@@ -91,6 +91,11 @@ Rectangle.prototype = {
     }
 };
 
+function Scene() {
+    this.id = scenes.length;
+    scenes.push(this);
+}
+
 function random(max) {
     //return Math.floor(Math.random() * max);
     return ~~(Math.random() * max); //most fast
