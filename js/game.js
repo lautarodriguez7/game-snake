@@ -106,14 +106,57 @@ function loadScene(scene) {
     scenes[currentScene].load();
 }
 
-function Scene() {
-    this.id = scenes.length;
-    scenes.push(this);
-}
-
 function random(max) {
     //return Math.floor(Math.random() * max);
     return ~~(Math.random() * max); //most fast
+}
+
+function repaint() {
+    window.requestAnimationFrame(repaint);
+    if (scenes.length) {
+        scenes[currentScene].paint(ctx);
+    }
+}
+
+
+function run() {
+    setTimeout(run, 50);
+    //act();
+    if (scenes.length) {
+        scenes[currentScene].act();
+    }
+}
+
+function init() {
+    // Get canvas and context
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext('2d');buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height
+
+    // Load buffer
+    buffer = document.createElement('canvas');
+    bufferCtx = buffer.getContext('2d');
+    buffer.width = 300;
+    buffer.height = 150;
+
+    // Load assets
+    iBody.src = 'assets/body.png';
+    iFood.src = 'assets/fruits.png';
+    aEat.src = 'assets/chomp.m4a';
+    aDie.src = 'assets/dies.m4a';
+
+    // Create food
+    food = new Rectangle(80, 80, 10, 10);
+    
+    // Create walls
+    //wall.push(new Rectangle(100, 50, 10, 10));
+    //wall.push(new Rectangle(100, 100, 10, 10));
+    //wall.push(new Rectangle(200, 50, 10, 10));
+    //wall.push(new Rectangle(200, 100, 10, 10));
+    
+    // Start game
+    resize();
+    run();
+    repaint();
 }
 
 function resize() {
@@ -278,59 +321,14 @@ function act() {
     }
 }
 
-function repaint() {
-    window.requestAnimationFrame(repaint);
-    if (scenes.length) {
-        scenes[currentScene].paint(ctx);
-    }
     /*paint(bufferCtx);
 
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height); */
-}
-
-function run() {
-    setTimeout(run, 50);
-    //act();
-    if (scenes.length) {
-        scenes[currentScene].act();
-    }
-}
 
 
-function init() {
-    // Get canvas and context
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext('2d');buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height
-
-    // Load buffer
-    buffer = document.createElement('canvas');
-    bufferCtx = buffer.getContext('2d');
-    buffer.width = 300;
-    buffer.height = 150;
-
-    // Load assets
-    iBody.src = 'assets/body.png';
-    iFood.src = 'assets/fruits.png';
-    aEat.src = 'assets/chomp.m4a';
-    aDie.src = 'assets/dies.m4a';
-
-    // Create food
-    food = new Rectangle(80, 80, 10, 10);
-    
-    // Create walls
-    //wall.push(new Rectangle(100, 50, 10, 10));
-    //wall.push(new Rectangle(100, 100, 10, 10));
-    //wall.push(new Rectangle(200, 50, 10, 10));
-    //wall.push(new Rectangle(200, 100, 10, 10));
-    
-    // Start game
-    resize();
-    run();
-    repaint();
-}
 
 window.addEventListener('load', init, false);
 window.addEventListener('resize', resize, false);
