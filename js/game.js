@@ -152,18 +152,6 @@ function init() {
     repaint();
 }
 
-function reset() {
-    score = 0;
-    dir = 1;
-    body.length = 0;
-    body.push(new Rectangle(40, 40, 10, 10));
-    body.push(new Rectangle(0, 0, 10, 10));
-    body.push(new Rectangle(0, 0, 10, 10));
-    food.x = random(buffer.width / 10 - 1) * 10;
-    food.y = random(buffer.height / 10 - 1) * 10;
-    gameover = false;
-}
-
 //Main Scene
 mainscene = new scene();
 
@@ -186,6 +174,22 @@ mainscene.paint = function (ctx) {
             lastPress = null;
         }
     }
+
+    //Game scene
+    gameScene = new scene();
+
+    gameScene.load = function () {
+        score = 0;
+        dir = 1;
+        body.length = 0;
+        body.push(new Rectangle(40, 40, 10, 10));
+        body.push(new Rectangle(0, 0, 10, 10));
+        body.push(new Rectangle(0, 0, 10, 10));
+        food.x = random(buffer.width / 10 - 1) * 10;
+        food.y = random(buffer.height / 10 - 1) * 10;
+        gameover = false;
+    }
+
     //draw player 
     ctx.strokeStyle = '0f0';
     for (i = 0, l = body.length; i < l; i += 1) {
