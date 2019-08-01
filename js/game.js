@@ -333,5 +333,4 @@ gameScene.act = function() {
 
 
 window.addEventListener('load', init, false);
-window.addEventListener('resize', resize, false);
 }(window));
