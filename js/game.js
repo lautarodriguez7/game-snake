@@ -23,7 +23,10 @@ var KEY_ENTER = 13,
     score = 0,
     //wall = new Array(),
     body = [], // most fast than new array()
-    food = null;
+    food = null,
+    SCENE_MAIN = 0,
+    SCENE_GAME = 1,
+    currentScene = 0;
     //images and sounds
     var iBody = new Image(),
         iFood = new Image(),
