@@ -178,6 +178,8 @@ mainscene.paint = function (ctx) {
     ctx.fillText('SNAKE',150, 60);
     ctx.fillText('Press Enter',150, 90);
 
+  ////////////////}
+
     //draw player 
     ctx.strokeStyle = '0f0';
     for (i = 0, l = body.length; i < l; i += 1) {
