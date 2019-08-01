@@ -101,6 +101,13 @@ function random(max) {
     return ~~(Math.random() * max); //most fast
 }
 
+Scene.prototype = {
+    constructor: Scene,
+    load: function () {},
+    paint: function (ctx) {},
+    act: function () {}
+};
+
 function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
