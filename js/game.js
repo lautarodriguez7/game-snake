@@ -290,7 +290,10 @@ function repaint() {
 
 function run() {
     setTimeout(run, 50);
-    act();
+    //act();
+    if (scenes.length) {
+        scenes[currentScene].act();
+    }
 }
 
 
