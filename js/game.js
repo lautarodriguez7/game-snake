@@ -25,7 +25,9 @@ var KEY_ENTER = 13,
     body = [], // most fast than new array()
     food = null,
     currentScene = 0,
-    scenes = [];
+    scenes = [],
+    mainScene = null,
+    gameScene = null;
     //images and sounds
     var iBody = new Image(),
         iFood = new Image(),
