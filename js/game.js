@@ -277,6 +277,9 @@ function act() {
 
 function repaint() {
     window.requestAnimationFrame(repaint);
+    if (scenes.length) {
+        scenes[currentScene].paint(ctx);
+    }
     /*paint(bufferCtx);
 
     ctx.fillStyle = '#000';
