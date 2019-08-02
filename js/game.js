@@ -211,10 +211,10 @@ mainscene.paint = function (ctx) {
             loadScene(highscoreScene);
             lastPress = null;
         }
-    }
+    };
 
     //Game scene
-    gameScene = new scene();
+    gameScene = new Scene();
 
     gameScene.load = function () {
         score = 0;
@@ -268,7 +268,7 @@ gameScene.paint = function (ctx) {
         ctx.fillText('PAUSE', 150, 75);
         }
     }
-}
+};
 
 
 gameScene.act = function() {
