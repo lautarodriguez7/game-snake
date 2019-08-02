@@ -238,7 +238,7 @@ gameScene.paint = function (ctx) {
     //Draw score 
     ctx.fillStyle = '#fff';
     ctx.textAlign = 'left';
-    ctx.fillText('Score: ' + score, 0, 10);
+    ctx.fillText('Score: ' + score, 5, 10);
 
     // Draw pause 
     if (pause) {
@@ -313,7 +313,11 @@ gameScene.act = function() {
        // Food intersects
     if (body[0].intersects(food)) {
         body.push(new Rectangle(0, 0, 10, 10));
-        score += 1;
+        score += 5;
+        if (score > 100)
+        {
+            score += 5;
+        }
         food.x = random(canvas.width / 10 - 1) * 10;
         food.y = random(canvas.height / 10 - 1) * 10;
         aEat.play();
