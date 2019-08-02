@@ -154,7 +154,12 @@ function init() {
 
     // Create food
     food = new Rectangle(80, 80, 10, 10);
-    
+
+    // Load saved highscores
+    if (localStorage.highscores) {
+        highscores = localStorage.highscores.split(',');
+    }   
+
     // Create walls
     //wall.push(new Rectangle(100, 50, 10, 10));
     //wall.push(new Rectangle(100, 100, 10, 10));
