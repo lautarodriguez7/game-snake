@@ -213,7 +213,7 @@ gameScene.paint = function (ctx) {
     var i = 0,
         l = 0;
     //clean cavas
-    ctx.fillStyle = '#030';
+    ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     //draw player 
@@ -230,7 +230,7 @@ gameScene.paint = function (ctx) {
     
     //draw food 
     ctx.strokeStyle = '#f00';
-    ctx.drawImage(ctx, iFood);
+    food.drawImage(ctx, iFood);
 
     // Debug last key pressed 
     //ctx.fillText('Last Press: ' + lastPress, 0, 20);
