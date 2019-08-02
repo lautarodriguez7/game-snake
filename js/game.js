@@ -278,7 +278,7 @@ gameScene.act = function() {
     if (!pause) { 
     //Game Over reset
     if (gameover) {
-        loadScene(mainscene);
+        loadScene(highscoreScene);
     }
 
     // Move Body
@@ -334,7 +334,7 @@ gameScene.act = function() {
         body.push(new Rectangle(0, 0, 10, 10));
         score += 1;
         food.x = random(canvas.width / 10 - 1) * 10;
-        food.y = random(canvas.height / 10 -1) * 10;
+        food.y = random(canvas.height / 10 - 1) * 10;
         aEat.play();
     }
     // Wall Intersects
@@ -350,6 +350,7 @@ gameScene.act = function() {
             gameover = true;
             pause = true;
             aDie.play();
+            addHighscore(score);
         }
     }
 }
