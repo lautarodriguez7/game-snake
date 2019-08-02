@@ -24,7 +24,8 @@ var KEY_ENTER = 13,
     gameScene = null,
     highscores = [],
     highscoreScene = null,
-    posHighscore = 10;
+    posHighscore = 10,
+    scorePlus = '+10';
     //images and sounds
     var iBody = new Image(),
         iFood = new Image(),
@@ -239,6 +240,9 @@ gameScene.paint = function (ctx) {
     ctx.fillStyle = '#fff';
     ctx.textAlign = 'left';
     ctx.fillText('Score: ' + score, 5, 10);
+    if (score > 100) {
+        ctx.fillText('Score: ' + scorePlus, 5, 20);
+    }
 
     // Draw pause 
     if (pause) {
@@ -314,7 +318,7 @@ gameScene.act = function() {
     if (body[0].intersects(food)) {
         body.push(new Rectangle(0, 0, 10, 10));
         score += 5;
-        if (score > 100)
+        if (score > 10)
         {
             score += 5;
         }
