@@ -95,6 +95,10 @@ Rectangle.prototype = {
     }
 };
 
+function Scene() {
+    this.id = scenes.length;
+    scene.push(this);
+}
 
 Scene.prototype = {
     constructor: Scene,
