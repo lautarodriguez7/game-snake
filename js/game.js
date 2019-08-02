@@ -318,7 +318,7 @@ gameScene.act = function() {
     if (body[0].intersects(food)) {
         body.push(new Rectangle(0, 0, 10, 10));
         score += 5;
-        if (score > 10)
+        if (score > 100)
         {
             score += 5;
         }
