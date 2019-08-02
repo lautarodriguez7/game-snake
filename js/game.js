@@ -346,7 +346,7 @@ gameScene.act = function() {
 // Highscore Scene
 highscoreScene = new Scene();
 
-highscoresScene.paint = function (ctx) {
+highscoreScene.paint = function (ctx) {
     var i = 0,
         l = 0;
     // Clean canvas
@@ -369,7 +369,7 @@ highscoresScene.paint = function (ctx) {
     }
 };
 
-highscoresScene.act = function () {
+highscoreScene.act = function () {
     // Load next scene
     if (lastPress === KEY_ENTER) {
         loadScene(gameScene);
