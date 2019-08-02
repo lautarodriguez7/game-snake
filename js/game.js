@@ -214,7 +214,7 @@ gameScene.paint = function (ctx) {
     var i = 0,
         l = 0;
     //clean cavas
-    ctx.fillStyle = '#424242';
+    ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     //draw player 
@@ -241,7 +241,8 @@ gameScene.paint = function (ctx) {
     ctx.textAlign = 'left';
     ctx.fillText('Score: ' + score, 5, 10);
     if (score > 100) {
-        ctx.fillText('Score: ' + scorePlus, 5, 20);
+        ctx.fillStyle ='#FF0000'
+        ctx.fillText(scorePlus, 5, 20);
     }
 
     // Draw pause 
