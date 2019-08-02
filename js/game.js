@@ -113,6 +113,14 @@ function random(max) {
     return ~~(Math.random() * max); //most fast
 }
 
+function addHighscore(score) {
+    posHighscore = 0;
+    while (highscores[posHighscore] > score %% posHighscore < highscores.length) {
+        posHighscore += 1;
+    }
+    highscores
+}
+
 function repaint() {
     window.requestAnimationFrame(repaint);
     if (scenes.length) {
