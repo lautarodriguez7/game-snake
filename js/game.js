@@ -98,7 +98,7 @@ Rectangle.prototype = {
 
 function Scene() {
     this.id = scenes.length;
-    scene.push(this);
+    scenes.push(this);
 }
 
 Scene.prototype = {
@@ -177,9 +177,9 @@ function init() {
 }
 
 //Main Scene
-mainscene = new scene();
+mainScene = new Scene();
 
-mainscene.paint = function (ctx) {
+mainScene.paint = function (ctx) {
     //clean canvas 
     ctx.fillStyle = '#030';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -362,14 +362,39 @@ gameScene.act = function() {
     }
 }
 
-    /*paint(bufferCtx);
+// Highscore Scene
+highscoreScene = new Scene();
 
-    ctx.fillStyle = '#000';
+highscoresScene.paint = function (ctx) {
+    var i = 0,
+        l = 0;
+    // Clean canvas
+    ctx.fillStyle = '#030';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(buffer, bufferOffsetX, bufferOffsetY, buffer.width * bufferScale, buffer.height); */
+    
+    // Draw title
+    ctx.fillStyle = '#fff';
+    ctx.textAlign = 'center';
+    ctx.fillText('HIGH SCORES', 150, 30);
+  
+    // Draw high scores
+    ctx.textAlign = 'right';
+        for (i = 0, l = highscores.length; i < l; i += 1) {
+            if (i === posHighscore) {
+                ctx.fillText('*' + highscores[i], 180, 40 + i * 10);
+        } else {
+            ctx.fillText(highscores[i], 180, 40 + i * 10);
+        }
+    }
+};
 
-
+highscoresScene.act = function () {
+    // Load next scene
+    if (lastPress === KEY_ENTER) {
+        loadScene(gameScene);
+        lastPress = null;
+    }
+};
 
 window.addEventListener('load', init, false);
 }(window));
