@@ -29,6 +29,7 @@ var KEY_ENTER = 13,
     mainScene = null,
     gameScene = null,
     highscores = [],
+    highscoreScene = null,
     posHighscore = 10;
     //images and sounds
     var iBody = new Image(),
@@ -207,7 +208,7 @@ mainscene.paint = function (ctx) {
     mainScene.act = function() {
         //Load next scene
         if (lastPress === KEY_ENTER) {
-            loadScene(gameScene);
+            loadScene(highscoreScene);
             lastPress = null;
         }
     }
