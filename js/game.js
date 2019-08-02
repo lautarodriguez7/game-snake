@@ -29,7 +29,7 @@ var KEY_ENTER = 13,
     mainScene = null,
     gameScene = null,
     highscores = [],
-    posHighscore = 1;
+    posHighscore = 10;
     //images and sounds
     var iBody = new Image(),
         iFood = new Image(),
