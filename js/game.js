@@ -213,7 +213,7 @@ gameScene.paint = function (ctx) {
     var i = 0,
         l = 0;
     //clean cavas
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#424242';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     //draw player 
