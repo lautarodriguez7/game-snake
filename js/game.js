@@ -189,7 +189,9 @@ mainscene.paint = function (ctx) {
     ctx.fillText('SNAKE',150, 60);
     ctx.fillText('Press Enter',150, 90);
 }
-  ////////////////
+    // Main Scene
+    mainScene = new Scene();
+
     mainScene.act = function() {
         //Load next scene
         if (lastPress === KEY_ENTER) {
